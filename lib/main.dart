@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
       ),
       home: Builder(
         builder: (context) {
-          return MyHomePage(
-            title: tr('app.title'),
+          return const MyHomePage(
+            title: "Dashboard",
           );
         },
       ),
@@ -55,28 +55,105 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Container(
-          color: Colors.amber,
-          alignment: Alignment.center,
-          child: Container(
+        body: SafeArea(
+            minimum: const EdgeInsets.all(8),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Row(
-                  children: <Widget>[Text("username"), Text("Username")],
+                Wrap(
+                  children: <Widget>[
+                    Card(
+                      color: Colors.blue,
+                      child: SizedBox(
+                        width: (MediaQuery.of(context).size.width * 0.5) - 16,
+                        height: 100,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Text("Infections"),
+                            Text("124"),
+                            Text("(Today cases 1234)"),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.red,
+                      child: SizedBox(
+                        width: (MediaQuery.of(context).size.width * 0.5) - 16,
+                        height: 100,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Text("Death"),
+                            Text("124"),
+                            Text("(Today cases 1234)"),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.green,
+                      child: SizedBox(
+                        width: (MediaQuery.of(context).size.width * 0.5) - 16,
+                        height: 100,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Text("Recoveries"),
+                            Text("124"),
+                            Text("(Today cases 1234)"),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      color: Colors.yellow,
+                      child: SizedBox(
+                        width: (MediaQuery.of(context).size.width * 0.5) - 16,
+                        height: 100,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Text("Critical"),
+                            Text("124"),
+                            Text("(Today cases 1234)"),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-                Row(
-                  children: <Widget>[Text("password"), Text("Password")],
-                )
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: const Text("Affect Countries"),
+                ),
+                Expanded(
+                    child: ListView.builder(
+                        itemCount: 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                            title: const Text("Thai"),
+                            subtitle: Row(
+                              children: const <Widget>[
+                                Text("data1"),
+                                Text("&"),
+                                Text("data2"),
+                              ],
+                            ),
+                          );
+                        }))
               ],
-            ),
-          ),
-        ));
+            )));
   }
 }
